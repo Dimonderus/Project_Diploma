@@ -5,19 +5,19 @@
 # Template: app
 #############################################################################
 
-MAKEFILE      = Makefile.Debug
+MAKEFILE      = Makefile.Release
 
 ####### Compiler, tools and options
 
 CC            = cl
 CXX           = cl
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zi -MDd -W3 -w44456 -w44457 -w44458 /Fddebug\S_10_Diploma.vc.pdb $(DEFINES)
-CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc /Fddebug\S_10_Diploma.vc.pdb $(DEFINES)
-INCPATH       = -I..\S_10_Diploma -I. -IC:\Qt\5.12.0\msvc2017\include -IC:\Qt\5.12.0\msvc2017\include\QtWidgets -IC:\Qt\5.12.0\msvc2017\include\QtGui -IC:\Qt\5.12.0\msvc2017\include\QtANGLE -IC:\Qt\5.12.0\msvc2017\include\QtCore -Idebug -I. -I\include -IC:\Qt\5.12.0\msvc2017\mkspecs\win32-msvc 
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNDEBUG
+CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -O2 -MD -W3 -w44456 -w44457 -w44458 $(DEFINES)
+CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc $(DEFINES)
+INCPATH       = -I..\S_10_Diploma -I. -IC:\Qt\5.12.0\msvc2017\include -IC:\Qt\5.12.0\msvc2017\include\QtWidgets -IC:\Qt\5.12.0\msvc2017\include\QtGui -IC:\Qt\5.12.0\msvc2017\include\QtANGLE -IC:\Qt\5.12.0\msvc2017\include\QtCore -Irelease -I. -I\include -IC:\Qt\5.12.0\msvc2017\mkspecs\win32-msvc 
 LINKER        = link
-LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.12.0\msvc2017\lib C:\Qt\5.12.0\msvc2017\lib\Qt5Widgetsd.lib C:\Qt\5.12.0\msvc2017\lib\Qt5Guid.lib C:\Qt\5.12.0\msvc2017\lib\Qt5Cored.lib  C:\Qt\5.12.0\msvc2017\lib\qtmaind.lib /LIBPATH:C:\opensslx86\lib /LIBPATH:C:\Utils\my_sql\mysql-5.6.11-win32\lib /LIBPATH:C:\Utils\postgresqlx86\pgsql\lib shell32.lib /LIBPATH:C:\Qt\5.12.0\msvc2017\lib C:\Qt\5.12.0\msvc2017\lib\Qt5Cored.lib 
+LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
+LIBS          = /LIBPATH:C:\Qt\5.12.0\msvc2017\lib C:\Qt\5.12.0\msvc2017\lib\Qt5Widgets.lib C:\Qt\5.12.0\msvc2017\lib\Qt5Gui.lib C:\Qt\5.12.0\msvc2017\lib\Qt5Core.lib  C:\Qt\5.12.0\msvc2017\lib\qtmain.lib /LIBPATH:C:\opensslx86\lib /LIBPATH:C:\Utils\my_sql\mysql-5.6.11-win32\lib /LIBPATH:C:\Utils\postgresqlx86\pgsql\lib shell32.lib /LIBPATH:C:\Qt\5.12.0\msvc2017\lib C:\Qt\5.12.0\msvc2017\lib\Qt5Core.lib 
 QMAKE         = C:\Qt\5.12.0\msvc2017\bin\qmake.exe
 IDC           = idc
 IDL           = midl /NOLOGO
@@ -41,120 +41,122 @@ QINSTALL_PROGRAM = C:\Qt\5.12.0\msvc2017\bin\qmake.exe -install qinstall -exe
 
 ####### Output directory
 
-OBJECTS_DIR   = debug
+OBJECTS_DIR   = release
 
 ####### Files
 
 SOURCES       = ..\S_10_Diploma\main.cpp \
 		..\S_10_Diploma\mainwindow.cpp \
-		..\S_10_Diploma\secondwindow_add_device.cpp debug\moc_mainwindow.cpp \
-		debug\moc_secondwindow_add_device.cpp
-OBJECTS       = debug\main.obj \
-		debug\mainwindow.obj \
-		debug\secondwindow_add_device.obj \
-		debug\moc_mainwindow.obj \
-		debug\moc_secondwindow_add_device.obj
+		..\S_10_Diploma\secondwindow_add_device.cpp release\qrc_resource.cpp \
+		release\moc_mainwindow.cpp \
+		release\moc_secondwindow_add_device.cpp
+OBJECTS       = release\main.obj \
+		release\mainwindow.obj \
+		release\secondwindow_add_device.obj \
+		release\qrc_resource.obj \
+		release\moc_mainwindow.obj \
+		release\moc_secondwindow_add_device.obj
 
 DIST          =  ..\S_10_Diploma\mainwindow.h \
 		..\S_10_Diploma\secondwindow_add_device.h ..\S_10_Diploma\main.cpp \
 		..\S_10_Diploma\mainwindow.cpp \
 		..\S_10_Diploma\secondwindow_add_device.cpp
 QMAKE_TARGET  = S_10_Diploma
-DESTDIR        = debug\ #avoid trailing-slash linebreak
+DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = S_10_Diploma.exe
-DESTDIR_TARGET = debug\S_10_Diploma.exe
+DESTDIR_TARGET = release\S_10_Diploma.exe
 
 ####### Implicit rules
 
 .SUFFIXES: .c .cpp .cc .cxx
 
-{debug}.cpp{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{release}.cpp{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{debug}.cc{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{release}.cc{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{debug}.cxx{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{release}.cxx{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{debug}.c{debug\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+{release}.c{release\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{.}.cpp{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{.}.cpp{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{.}.cc{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{.}.cc{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{.}.cxx{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{.}.cxx{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{.}.c{debug\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+{.}.c{release\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{..\S_10_Diploma}.cpp{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{..\S_10_Diploma}.cpp{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{..\S_10_Diploma}.cc{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{..\S_10_Diploma}.cc{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{..\S_10_Diploma}.cxx{debug\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+{..\S_10_Diploma}.cxx{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
-{..\S_10_Diploma}.c{debug\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+{..\S_10_Diploma}.c{release\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
 <<
 
 ####### Build rules
 
 first: all
-all: Makefile.Debug  debug\S_10_Diploma.exe
+all: Makefile.Release  release\S_10_Diploma.exe
 
-debug\S_10_Diploma.exe: ui_mainwindow.h ui_secondwindow_add_device.h $(OBJECTS) 
+release\S_10_Diploma.exe: ui_mainwindow.h ui_secondwindow_add_device.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\main.obj debug\mainwindow.obj debug\secondwindow_add_device.obj debug\moc_mainwindow.obj debug\moc_secondwindow_add_device.obj
+release\main.obj release\mainwindow.obj release\secondwindow_add_device.obj release\qrc_resource.obj release\moc_mainwindow.obj release\moc_secondwindow_add_device.obj
 $(LIBS)
 <<
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Debug ..\S_10_Diploma\S_10_Diploma.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
+	@$(QMAKE) -o Makefile.Release ..\S_10_Diploma\S_10_Diploma.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) S_10_Diploma.zip $(SOURCES) $(DIST) ..\S_10_Diploma\S_10_Diploma.pro C:\Qt\5.12.0\msvc2017\mkspecs\features\spec_pre.prf C:\Qt\5.12.0\msvc2017\mkspecs\common\angle.conf C:\Qt\5.12.0\msvc2017\mkspecs\common\windows-vulkan.conf C:\Qt\5.12.0\msvc2017\mkspecs\common\msvc-desktop.conf C:\Qt\5.12.0\msvc2017\mkspecs\qconfig.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_charts.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_charts_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_core.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_datavisualization.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_datavisualization_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_help.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_location.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_network.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_networkauth.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_networkauth_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioningquick.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_purchasing.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_purchasing_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_repparser.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_repparser_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_script.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\features\qt_functions.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qt_config.prf C:\Qt\5.12.0\msvc2017\mkspecs\win32-msvc\qmake.conf C:\Qt\5.12.0\msvc2017\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.12.0\msvc2017\mkspecs\features\exclusive_builds.prf C:\Qt\5.12.0\msvc2017\mkspecs\common\msvc-version.conf C:\Qt\5.12.0\msvc2017\mkspecs\features\toolchain.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\default_pre.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\win32\default_pre.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\resolve_config.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\default_post.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\build_pass.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qml_debug.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\precompile_header.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\warn_on.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qt.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\resources.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\moc.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\win32\opengl.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\uic.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qmake_use.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\file_copies.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\win32\windows.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\testcase_targets.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\exceptions.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\yacc.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\lex.prf ..\S_10_Diploma\S_10_Diploma.pro C:\Qt\5.12.0\msvc2017\lib\Qt5Widgetsd.prl C:\Qt\5.12.0\msvc2017\lib\Qt5Guid.prl C:\Qt\5.12.0\msvc2017\lib\Qt5Cored.prl C:\Qt\5.12.0\msvc2017\lib\qtmaind.prl    C:\Qt\5.12.0\msvc2017\mkspecs\features\data\dummy.cpp ..\S_10_Diploma\mainwindow.h ..\S_10_Diploma\secondwindow_add_device.h  ..\S_10_Diploma\main.cpp ..\S_10_Diploma\mainwindow.cpp ..\S_10_Diploma\secondwindow_add_device.cpp ..\S_10_Diploma\mainwindow.ui ..\S_10_Diploma\secondwindow_add_device.ui    
+	$(ZIP) S_10_Diploma.zip $(SOURCES) $(DIST) ..\S_10_Diploma\S_10_Diploma.pro C:\Qt\5.12.0\msvc2017\mkspecs\features\spec_pre.prf C:\Qt\5.12.0\msvc2017\mkspecs\common\angle.conf C:\Qt\5.12.0\msvc2017\mkspecs\common\windows-vulkan.conf C:\Qt\5.12.0\msvc2017\mkspecs\common\msvc-desktop.conf C:\Qt\5.12.0\msvc2017\mkspecs\qconfig.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3danimation.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3danimation_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dextras.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dextras_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dlogic.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dlogic_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3drender.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_3drender_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_accessibility_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_charts.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_charts_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_core.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_datavisualization.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_datavisualization_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_edid_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_egl_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_fb_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_fontdatabase_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gamepad.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gamepad_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_help.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_location.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_network.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_networkauth.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_networkauth_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_platformcompositor_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioningquick.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_positioningquick_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_purchasing.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_purchasing_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmldebug_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickshapes_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_repparser.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_repparser_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_script.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scxml.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_scxml_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialbus.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialbus_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_texttospeech.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_texttospeech_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_theme_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_vulkan_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\modules\qt_lib_zlib_private.pri C:\Qt\5.12.0\msvc2017\mkspecs\features\qt_functions.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qt_config.prf C:\Qt\5.12.0\msvc2017\mkspecs\win32-msvc\qmake.conf C:\Qt\5.12.0\msvc2017\mkspecs\features\spec_post.prf .qmake.stash C:\Qt\5.12.0\msvc2017\mkspecs\features\exclusive_builds.prf C:\Qt\5.12.0\msvc2017\mkspecs\common\msvc-version.conf C:\Qt\5.12.0\msvc2017\mkspecs\features\toolchain.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\default_pre.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\win32\default_pre.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\resolve_config.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\default_post.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\build_pass.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\resources.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qtquickcompiler.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\precompile_header.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\warn_on.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qt.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\moc.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\win32\opengl.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\uic.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\qmake_use.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\file_copies.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\win32\windows.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\testcase_targets.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\exceptions.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\yacc.prf C:\Qt\5.12.0\msvc2017\mkspecs\features\lex.prf ..\S_10_Diploma\S_10_Diploma.pro ..\S_10_Diploma\resource.qrc C:\Qt\5.12.0\msvc2017\lib\Qt5Widgets.prl C:\Qt\5.12.0\msvc2017\lib\Qt5Gui.prl C:\Qt\5.12.0\msvc2017\lib\Qt5Core.prl C:\Qt\5.12.0\msvc2017\lib\qtmain.prl  ..\S_10_Diploma\resource.qrc    C:\Qt\5.12.0\msvc2017\mkspecs\features\data\dummy.cpp ..\S_10_Diploma\mainwindow.h ..\S_10_Diploma\secondwindow_add_device.h  ..\S_10_Diploma\main.cpp ..\S_10_Diploma\mainwindow.cpp ..\S_10_Diploma\secondwindow_add_device.cpp ..\S_10_Diploma\mainwindow.ui ..\S_10_Diploma\secondwindow_add_device.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\secondwindow_add_device.obj debug\moc_mainwindow.obj debug\moc_secondwindow_add_device.obj
-	-$(DEL_FILE) debug\S_10_Diploma.exp debug\S_10_Diploma.vc.pdb debug\S_10_Diploma.ilk debug\S_10_Diploma.idb
+	-$(DEL_FILE) release\main.obj release\mainwindow.obj release\secondwindow_add_device.obj release\qrc_resource.obj release\moc_mainwindow.obj release\moc_secondwindow_add_device.obj
+	-$(DEL_FILE) release\S_10_Diploma.exp
 
 distclean: clean 
-	-$(DEL_FILE) .qmake.stash debug\S_10_Diploma.lib debug\S_10_Diploma.pdb
+	-$(DEL_FILE) .qmake.stash release\S_10_Diploma.lib
 	-$(DEL_FILE) $(DESTDIR_TARGET)
-	-$(DEL_FILE) Makefile.Debug
+	-$(DEL_FILE) Makefile.Release
 
 mocclean: compiler_moc_header_clean compiler_moc_objc_header_clean compiler_moc_source_clean
 
@@ -164,20 +166,31 @@ check: first
 
 benchmark: first
 
+compiler_rcc_make_all: release\qrc_resource.cpp
+compiler_rcc_clean:
+	-$(DEL_FILE) release\qrc_resource.cpp
+release\qrc_resource.cpp: ..\S_10_Diploma\resource.qrc \
+		C:\Qt\5.12.0\msvc2017\bin\rcc.exe \
+		..\S_10_Diploma\logo\icon.png
+	C:\Qt\5.12.0\msvc2017\bin\rcc.exe -name resource ..\S_10_Diploma\resource.qrc -o release\qrc_resource.cpp
+
+compiler_qmlcache_make_all:
+compiler_qmlcache_clean:
+compiler_qmlcache_loader_make_all: release\qmlcache_loader.cpp
+compiler_qmlcache_loader_clean:
+	-$(DEL_FILE) release\qmlcache_loader.cpp
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
-compiler_rcc_make_all:
-compiler_rcc_clean:
-compiler_moc_predefs_make_all: debug\moc_predefs.h
+compiler_moc_predefs_make_all: release\moc_predefs.h
 compiler_moc_predefs_clean:
-	-$(DEL_FILE) debug\moc_predefs.h
-debug\moc_predefs.h: C:\Qt\5.12.0\msvc2017\mkspecs\features\data\dummy.cpp
-	cl -BxC:\Qt\5.12.0\msvc2017\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\5.12.0\msvc2017\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h
+	-$(DEL_FILE) release\moc_predefs.h
+release\moc_predefs.h: C:\Qt\5.12.0\msvc2017\mkspecs\features\data\dummy.cpp
+	cl -BxC:\Qt\5.12.0\msvc2017\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E C:\Qt\5.12.0\msvc2017\mkspecs\features\data\dummy.cpp 2>NUL >release\moc_predefs.h
 
-compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_secondwindow_add_device.cpp
+compiler_moc_header_make_all: release\moc_mainwindow.cpp release\moc_secondwindow_add_device.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_secondwindow_add_device.cpp
-debug\moc_mainwindow.cpp: C:\Qt\5.12.0\msvc2017\include\QtWidgets\QMainWindow \
+	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_secondwindow_add_device.cpp
+release\moc_mainwindow.cpp: C:\Qt\5.12.0\msvc2017\include\QtWidgets\QMainWindow \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qmainwindow.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qtwidgetsglobal.h \
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qtguiglobal.h \
@@ -287,11 +300,11 @@ debug\moc_mainwindow.cpp: C:\Qt\5.12.0\msvc2017\include\QtWidgets\QMainWindow \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\QDialog \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qdialog.h \
 		..\S_10_Diploma\mainwindow.h \
-		debug\moc_predefs.h \
+		release\moc_predefs.h \
 		C:\Qt\5.12.0\msvc2017\bin\moc.exe
-	C:\Qt\5.12.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/Anvar/Documents/GitHub/Project_Diploma/build-S_10_Diploma-Desktop_Qt_5_12_0_MSVC2017_32bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.0/msvc2017/mkspecs/win32-msvc -IC:/Users/Anvar/Documents/GitHub/Project_Diploma/S_10_Diploma -IC:/Qt/5.12.0/msvc2017/include -IC:/Qt/5.12.0/msvc2017/include/QtWidgets -IC:/Qt/5.12.0/msvc2017/include/QtGui -IC:/Qt/5.12.0/msvc2017/include/QtANGLE -IC:/Qt/5.12.0/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\S_10_Diploma\mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\5.12.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/Anvar/Documents/GitHub/Project_Diploma/build-S_10_Diploma-Desktop_Qt_5_12_0_MSVC2017_32bit-Release/release/moc_predefs.h -IC:/Qt/5.12.0/msvc2017/mkspecs/win32-msvc -IC:/Users/Anvar/Documents/GitHub/Project_Diploma/S_10_Diploma -IC:/Qt/5.12.0/msvc2017/include -IC:/Qt/5.12.0/msvc2017/include/QtWidgets -IC:/Qt/5.12.0/msvc2017/include/QtGui -IC:/Qt/5.12.0/msvc2017/include/QtANGLE -IC:/Qt/5.12.0/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\S_10_Diploma\mainwindow.h -o release\moc_mainwindow.cpp
 
-debug\moc_secondwindow_add_device.cpp: C:\Qt\5.12.0\msvc2017\include\QtWidgets\QDialog \
+release\moc_secondwindow_add_device.cpp: C:\Qt\5.12.0\msvc2017\include\QtWidgets\QDialog \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qdialog.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qtwidgetsglobal.h \
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qtguiglobal.h \
@@ -396,9 +409,9 @@ debug\moc_secondwindow_add_device.cpp: C:\Qt\5.12.0\msvc2017\include\QtWidgets\Q
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qvector2d.h \
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qtouchdevice.h \
 		..\S_10_Diploma\secondwindow_add_device.h \
-		debug\moc_predefs.h \
+		release\moc_predefs.h \
 		C:\Qt\5.12.0\msvc2017\bin\moc.exe
-	C:\Qt\5.12.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/Anvar/Documents/GitHub/Project_Diploma/build-S_10_Diploma-Desktop_Qt_5_12_0_MSVC2017_32bit-Debug/debug/moc_predefs.h -IC:/Qt/5.12.0/msvc2017/mkspecs/win32-msvc -IC:/Users/Anvar/Documents/GitHub/Project_Diploma/S_10_Diploma -IC:/Qt/5.12.0/msvc2017/include -IC:/Qt/5.12.0/msvc2017/include/QtWidgets -IC:/Qt/5.12.0/msvc2017/include/QtGui -IC:/Qt/5.12.0/msvc2017/include/QtANGLE -IC:/Qt/5.12.0/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\S_10_Diploma\secondwindow_add_device.h -o debug\moc_secondwindow_add_device.cpp
+	C:\Qt\5.12.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/Anvar/Documents/GitHub/Project_Diploma/build-S_10_Diploma-Desktop_Qt_5_12_0_MSVC2017_32bit-Release/release/moc_predefs.h -IC:/Qt/5.12.0/msvc2017/mkspecs/win32-msvc -IC:/Users/Anvar/Documents/GitHub/Project_Diploma/S_10_Diploma -IC:/Qt/5.12.0/msvc2017/include -IC:/Qt/5.12.0/msvc2017/include/QtWidgets -IC:/Qt/5.12.0/msvc2017/include/QtGui -IC:/Qt/5.12.0/msvc2017/include/QtANGLE -IC:/Qt/5.12.0/msvc2017/include/QtCore -I. -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\ATLMFC\include" -I"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.16.27023\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.17763.0\cppwinrt" ..\S_10_Diploma\secondwindow_add_device.h -o release\moc_secondwindow_add_device.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -421,13 +434,13 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 
 
 ####### Compile
 
-debug\main.obj: ..\S_10_Diploma\main.cpp ..\S_10_Diploma\mainwindow.h \
+release\main.obj: ..\S_10_Diploma\main.cpp ..\S_10_Diploma\mainwindow.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\QMainWindow \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qmainwindow.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qtwidgetsglobal.h \
@@ -545,7 +558,7 @@ debug\main.obj: ..\S_10_Diploma\main.cpp ..\S_10_Diploma\mainwindow.h \
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qguiapplication.h \
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qinputmethod.h
 
-debug\mainwindow.obj: ..\S_10_Diploma\mainwindow.cpp ..\S_10_Diploma\mainwindow.h \
+release\mainwindow.obj: ..\S_10_Diploma\mainwindow.cpp ..\S_10_Diploma\mainwindow.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\QMainWindow \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qmainwindow.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qtwidgetsglobal.h \
@@ -657,7 +670,7 @@ debug\mainwindow.obj: ..\S_10_Diploma\mainwindow.cpp ..\S_10_Diploma\mainwindow.
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qdialog.h \
 		ui_mainwindow.h
 
-debug\secondwindow_add_device.obj: ..\S_10_Diploma\secondwindow_add_device.cpp ..\S_10_Diploma\secondwindow_add_device.h \
+release\secondwindow_add_device.obj: ..\S_10_Diploma\secondwindow_add_device.cpp ..\S_10_Diploma\secondwindow_add_device.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\QDialog \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qdialog.h \
 		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qtwidgetsglobal.h \
@@ -763,13 +776,13 @@ debug\secondwindow_add_device.obj: ..\S_10_Diploma\secondwindow_add_device.cpp .
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qvector2d.h \
 		C:\Qt\5.12.0\msvc2017\include\QtGui\qtouchdevice.h \
 		ui_secondwindow_add_device.h \
-		C:\Qt\5.12.0\msvc2017\include\QtCore\QString \
-		C:\Qt\5.12.0\msvc2017\include\QtWidgets\QMessageBox \
-		C:\Qt\5.12.0\msvc2017\include\QtWidgets\qmessagebox.h
+		C:\Qt\5.12.0\msvc2017\include\QtCore\QString
 
-debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
+release\qrc_resource.obj: release\qrc_resource.cpp 
 
-debug\moc_secondwindow_add_device.obj: debug\moc_secondwindow_add_device.cpp 
+release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
+
+release\moc_secondwindow_add_device.obj: release\moc_secondwindow_add_device.cpp 
 
 ####### Install
 

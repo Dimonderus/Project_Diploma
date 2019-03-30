@@ -1,7 +1,7 @@
 #include "secondwindow_add_device.h"
 #include "ui_secondwindow_add_device.h"
 #include <QString>
-#include <QMessageBox>
+
 
 SecondWindow_add_device::SecondWindow_add_device(QWidget *parent) :
     QDialog(parent),

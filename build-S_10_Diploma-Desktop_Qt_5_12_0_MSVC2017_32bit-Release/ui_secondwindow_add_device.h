@@ -27,7 +27,6 @@ class Ui_SecondWindow_add_device
 {
 public:
     QGroupBox *groupBox;
-    QLabel *label_3;
     QWidget *widget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_3;
@@ -48,17 +47,14 @@ public:
         groupBox = new QGroupBox(SecondWindow_add_device);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setGeometry(QRect(0, 0, 221, 141));
-        label_3 = new QLabel(groupBox);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(30, 20, 161, 16));
         QFont font;
         font.setPointSize(10);
-        font.setBold(true);
-        font.setWeight(75);
-        label_3->setFont(font);
+        font.setBold(false);
+        font.setWeight(50);
+        groupBox->setFont(font);
         widget = new QWidget(groupBox);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(20, 40, 191, 83));
+        widget->setGeometry(QRect(20, 40, 191, 88));
         verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -116,8 +112,7 @@ public:
     void retranslateUi(QDialog *SecondWindow_add_device)
     {
         SecondWindow_add_device->setWindowTitle(QApplication::translate("SecondWindow_add_device", "Dialog", nullptr));
-        groupBox->setTitle(QApplication::translate("SecondWindow_add_device", "GroupBox", nullptr));
-        label_3->setText(QApplication::translate("SecondWindow_add_device", "\320\224\320\276\320\261\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \321\203\321\201\321\202\321\200\320\276\320\271\321\201\321\202\320\262", nullptr));
+        groupBox->setTitle(QApplication::translate("SecondWindow_add_device", "\320\224\320\276\320\261\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \321\203\321\201\321\202\321\200\320\276\320\271\321\201\321\202\320\262", nullptr));
         label->setText(QApplication::translate("SecondWindow_add_device", "\320\243\321\201\321\202\321\200\320\276\320\271\321\201\321\202\320\262\320\276", nullptr));
         label_2->setText(QApplication::translate("SecondWindow_add_device", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265", nullptr));
         addDevice->setText(QApplication::translate("SecondWindow_add_device", "\320\224\320\276\320\261\320\260\320\262\320\270\321\202\321\214", nullptr));

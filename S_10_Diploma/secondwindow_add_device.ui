@@ -22,36 +22,23 @@
      <height>141</height>
     </rect>
    </property>
-   <property name="title">
-    <string>GroupBox</string>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
    </property>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>161</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Добавление устройств</string>
-    </property>
-   </widget>
+   <property name="title">
+    <string>Добавление устройств</string>
+   </property>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>40</y>
       <width>191</width>
-      <height>83</height>
+      <height>88</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
