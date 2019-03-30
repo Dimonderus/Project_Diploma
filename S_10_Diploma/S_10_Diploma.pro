@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-03-29T10:31:11
+# Project created by QtCreator 2019-03-30T14:10:30
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = S_10
+TARGET = S_10_Diploma
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,13 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    secondwindow_add_device.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    secondwindow_add_device.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    secondwindow_add_device.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
