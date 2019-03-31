@@ -33,7 +33,7 @@ public:
     QWidget *centralWidget;
     QGraphicsView *graphicsView;
     QPushButton *pushButton_5;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QLabel *label;
     QVBoxLayout *verticalLayout;
@@ -41,7 +41,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_2;
     QVBoxLayout *verticalLayout_3;
@@ -59,8 +59,11 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(918, 769);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/logo/logo/icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/icon/logo/icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setWindowOpacity(1.000000000000000);
+        MainWindow->setIconSize(QSize(24, 24));
+        MainWindow->setToolButtonStyle(Qt::ToolButtonFollowStyle);
         MainWindow->setDocumentMode(false);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
@@ -69,16 +72,19 @@ public:
         graphicsView->setGeometry(QRect(340, 10, 571, 701));
         pushButton_5 = new QPushButton(centralWidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(10, 680, 91, 23));
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 30, 321, 246));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        pushButton_5->setGeometry(QRect(10, 680, 111, 31));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icon/logo/exit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_5->setIcon(icon1);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 30, 321, 246));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
         QFont font;
         font.setPointSize(10);
@@ -92,7 +98,7 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        tableWidget = new QTableWidget(widget);
+        tableWidget = new QTableWidget(layoutWidget);
         if (tableWidget->columnCount() < 2)
             tableWidget->setColumnCount(2);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
@@ -106,12 +112,12 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        pushButton = new QPushButton(widget);
+        pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         horizontalLayout->addWidget(pushButton);
 
-        pushButton_2 = new QPushButton(widget);
+        pushButton_2 = new QPushButton(layoutWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
         horizontalLayout->addWidget(pushButton_2);
@@ -122,15 +128,15 @@ public:
 
         verticalLayout_2->addLayout(verticalLayout);
 
-        widget1 = new QWidget(centralWidget);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(10, 290, 321, 246));
-        verticalLayout_4 = new QVBoxLayout(widget1);
+        layoutWidget1 = new QWidget(centralWidget);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 290, 321, 246));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget1);
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setContentsMargins(11, 11, 11, 11);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        label_2 = new QLabel(widget1);
+        label_2 = new QLabel(layoutWidget1);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         QFont font1;
         font1.setPointSize(10);
@@ -143,7 +149,7 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        tableWidget_2 = new QTableWidget(widget1);
+        tableWidget_2 = new QTableWidget(layoutWidget1);
         tableWidget_2->setObjectName(QString::fromUtf8("tableWidget_2"));
 
         verticalLayout_3->addWidget(tableWidget_2);
@@ -151,12 +157,12 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        pushButton_3 = new QPushButton(widget1);
+        pushButton_3 = new QPushButton(layoutWidget1);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
 
         horizontalLayout_2->addWidget(pushButton_3);
 
-        pushButton_4 = new QPushButton(widget1);
+        pushButton_4 = new QPushButton(layoutWidget1);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
 
         horizontalLayout_2->addWidget(pushButton_4);

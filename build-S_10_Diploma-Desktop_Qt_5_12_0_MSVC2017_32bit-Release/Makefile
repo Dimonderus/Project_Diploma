@@ -265,6 +265,7 @@ Makefile: ..\S_10_Diploma\S_10_Diploma.pro C:\Qt\5.12.0\msvc2017\mkspecs\win32-m
 		..\S_10_Diploma\S_10_Diploma.pro \
 		C:\Qt\5.12.0\msvc2017\lib\Qt5Widgets.prl \
 		C:\Qt\5.12.0\msvc2017\lib\Qt5Gui.prl \
+		C:\Qt\5.12.0\msvc2017\lib\Qt5Xml.prl \
 		C:\Qt\5.12.0\msvc2017\lib\Qt5Core.prl \
 		C:\Qt\5.12.0\msvc2017\lib\qtmain.prl
 	$(QMAKE) -o Makefile ..\S_10_Diploma\S_10_Diploma.pro -spec win32-msvc "CONFIG+=qtquickcompiler"
@@ -458,6 +459,7 @@ C:\Qt\5.12.0\msvc2017\mkspecs\features\lex.prf:
 ..\S_10_Diploma\S_10_Diploma.pro:
 C:\Qt\5.12.0\msvc2017\lib\Qt5Widgets.prl:
 C:\Qt\5.12.0\msvc2017\lib\Qt5Gui.prl:
+C:\Qt\5.12.0\msvc2017\lib\Qt5Xml.prl:
 C:\Qt\5.12.0\msvc2017\lib\Qt5Core.prl:
 C:\Qt\5.12.0\msvc2017\lib\qtmain.prl:
 qmake: FORCE

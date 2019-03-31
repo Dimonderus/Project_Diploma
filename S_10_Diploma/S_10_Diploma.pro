@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += xml
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = S_10_Diploma
@@ -26,11 +27,20 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    secondwindow_add_device.cpp
+    secondwindow_add_device.cpp \
+    xmlfileread.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    secondwindow_add_device.cpp \
+    xmlfileread.cpp
 
 HEADERS += \
         mainwindow.h \
-    secondwindow_add_device.h
+    secondwindow_add_device.h \
+    xmlfileread.h \
+    mainwindow.h \
+    secondwindow_add_device.h \
+    xmlfileread.h
 
 FORMS += \
         mainwindow.ui \
@@ -44,4 +54,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     resource.qrc
 
-DISTFILES +=
+DISTFILES += \
+    TypeDevice.xml \
+    image/1.png \
+    image/2.png

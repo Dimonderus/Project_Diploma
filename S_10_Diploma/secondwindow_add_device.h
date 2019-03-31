@@ -17,6 +17,7 @@ public:
 
 private slots:
        void on_addDevice_clicked();
+
 private:
     Ui::SecondWindow_add_device *ui;
 };
